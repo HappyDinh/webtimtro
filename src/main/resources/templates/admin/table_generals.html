@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="~{/admin/fragments/headadmin :: head}"></head>
+
+
+<body>
+
+<!-- ======= Header ======= -->
+<div th:replace="~{/admin/fragments/headeradmin :: header}"></div>
+<div th:replace="~{/admin/fragments/sidebaradmin :: sidebar}"></div>
+
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>General User</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">Tables</li>
+                <li class="breadcrumb-item active">General</li>
+            </ol>
+            <button type="button" class="btn btn-primary" th:onclick="'location.href=\'/adduser\''">
+                <i class="bi bi-person-plus"></i> Add user
+            </button>
+        </nav>
+    </div><!-- End Page Title -->
+
+
+    <section class="section">
+        <div class="row">
+
+            <div class="container">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Table with stripped rows</h5>
+
+
+                        <!-- Table with stripped rows -->
+                        <table class="table datatable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Zalo</th>
+                                    <th scope="col">Password</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Avata</th>
+                                    <th scope="col">Start Date</th>
+                                    <th scope="col">Edit</th>
+                                    <th scope="col">Delete</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr th:each="user : ${userList}">
+                                    <td th:text="${user.userID}">ID</td>
+                                    <td th:text="${user.username}">Name</td>
+                                    <td th:text="${user.phone}">Phone</td>
+                                    <td th:text="${user.zalo}">Zalo</td>
+                                    <td th:text="${user.password}">Password</td>
+                                    <td class="limited-lines" th:text="${user.address}">Address</td>
+                                    <td class="limited-lines" th:text="${user.avatar}">Avatar</td>
+                                    <td th:text="${user.dateDK}">Start Date</td>
+                                    <td>
+                                        <a class="btn btn-primary" th:href="@{/edituser(userID=${user.userID})}">
+                                            <i class="fas fa-edit"></i> Sửa
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <form action="/deleteuser/{userID}" method="POST"
+                                              th:action="@{/deleteuser/{userID}(userID=${user.userID})}"
+                                              onsubmit="return confirm('Bạn có chắc chắn muốn xóa người dùng này không?');">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fas fa-trash-alt"></i> Xóa
+                                            </button>
+                                        </form>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+
+                        </table>
+                        <!-- End Table with stripped rows -->
+<!--                        <div class="pagination-container">-->
+<!--                            <a th:href="@{/table_generals(page=${userList.number - 1}, size=${userList.size}, keyword=${keyword})}"-->
+<!--                               th:if="${userList.hasPrevious()}" class="pagination-link">Previous</a>-->
+
+<!--                            &lt;!&ndash; Hiển thị số trang hiện tại &ndash;&gt;-->
+<!--                            <span class="pagination-text mr-3 ml-3"><span th:text="${userList.number + 1}">1</span></span> &lt;!&ndash; +1 vì số trang bắt đầu từ 0 &ndash;&gt;-->
+
+<!--                            <a th:href="@{/table_generals(page=${userList.number + 1}, size=${userList.size}, keyword=${keyword})}"-->
+<!--                               th:if="${userList.hasNext()}" class="pagination-link">Next</a>-->
+<!--                        </div>-->
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </section>
+
+</main><!-- End #main -->
+
+
+<div th:replace="~{/admin/fragments/footeradmin :: footer}"></div>
+</body>
+
+</html>

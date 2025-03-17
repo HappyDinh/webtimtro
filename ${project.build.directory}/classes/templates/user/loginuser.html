@@ -1,0 +1,73 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Login user</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <link th:href="@{/font/css/loginuser.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!-- Section: Design Block -->
+<section class=" text-center text-lg-start">
+
+    <div class="card mb-3">
+        <div class="row g-0 d-flex align-items-center">
+            <!-- Cột chứa ảnh -->
+            <div class="col-lg-4 d-none d-lg-flex">
+                <img src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg" alt="Trendy Pants and Shoes"
+                     class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
+            </div>
+            <!-- Cột chứa form đăng nhập -->
+            <div class="col-lg-8 ml-2">
+                <div class="card-body py-5 px-md-5">
+
+
+                    <form th:action="@{/loginuser}" method="POST">
+                        <div style="text-align: center;">
+                            <h1>Đăng nhập</h1>
+                        </div>
+
+                        <!-- Các phần tử trong form -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <label class="form-label" for="phone">Phone</label>
+                            <input type="text" id="phone" name="phone" class="form-control" required>
+                        </div>
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <label class="form-label" for="password">Password</label>
+                            <input type="password" id="password" name="password" class="form-control" required>
+                        </div>
+                        <div class="row mb-4">
+                            <div class="col d-flex justify-content-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                                    <label class="form-check-label" for="form2Example31"> Remember me </label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <a href="#!">Forgot password?</a>
+                            </div>
+                        </div>
+                        <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">
+                            Sign in
+                        </button>
+                        <div class="text-center">
+                            <p>Not a member? <a href="/register">Register</a></p>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- Section: Design Block -->
+</body>
+
+
+
+</html>
+

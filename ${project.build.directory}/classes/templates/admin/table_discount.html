@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="~{/admin/fragments/headadmin :: head}"></head>
+
+
+<body>
+
+<!-- ======= Header ======= -->
+<div th:replace="~{/admin/fragments/headeradmin :: header}"></div>
+<div th:replace="~{/admin/fragments/sidebaradmin :: sidebar}"></div>
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Data Discount</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">Tables</li>
+                <li class="breadcrumb-item active">Blog</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Datatables</h5>
+                        <!-- Table with stripped rows -->
+                        <table class="table datatable">
+                            <thead>
+                            <tr>
+                                <th scope="col">Discount ID</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Discount</th>
+                                <th scope="col">RoomID</th>
+                                <th scope="col">Start time</th>
+                                <th scope="col">End time</th>
+                                <th scope="col">Xóa</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="discount : ${listdiscount}">
+                                <td th:text="${discount.DiscountID}"></td>
+                                <td class="limited-lines" th:text="${discount.discountname}"></td>
+                                <td th:text="${discount.discount}"></td>
+                                <td th:text="${discount.product.id}"></td>
+                                <td th:text="${discount.start_time}"></td>
+                                <td th:text="${discount.end_time}"></td>
+                                <td>
+                                    <form action="/deletediscount_admin/{id}" method="POST"
+                                          th:action="@{/deletediscount_admin/{id}(id=${discount.DiscountID})}"
+                                          onsubmit="return confirm('Bạn có chắc chắn muốn xóa discount này không?');">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-trash-alt"></i> Xóa
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!-- End Table with stripped rows -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main><!-- End #main -->
+<div th:replace="~{/admin/fragments/footeradmin :: footer}"></div>
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head th:replace="/user/frag/headuser :: headuser"></head>
+
+
+<body>
+<div th:replace="/user/frag/headeruser :: headeruser"></div>
+<div th:replace="/user/frag/navbar :: navbar"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="featured__item">
+                <div class="featured__item__pic set-bg" data-setbg="font/img/featured/index.jpg" style="height: 415px;"></div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="hero__item set-bg" data-setbg="font/img/featured/index.jpg">
+                <div class="hero__text">
+<!--                    <span>FRUIT FRESH</span>-->
+<!--                    <h2>Vegetable <br />100% Organic</h2>-->
+<!--                    <p>Free Pickup and Delivery Available</p>-->
+<!--                    <a href="#" class="primary-btn">SHOP NOW</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Featured Section Begin -->
+<section class="featured spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h2>Featured Room</h2>
+                </div>
+                <div class="featured__controls">
+                    <ul id="filter-menu">
+                        <li class="active" data-filter="*">Tất cả</li>
+                        <li data-filter=".chungcu">Chung cư</li>
+                        <li data-filter=".tro">Nhà trọ</li>
+                        <li data-filter=".CCMN">CCMN</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row featured__filter">
+
+            <div class="col-lg-3 col-md-3 col-sm-6 mix small-decor">
+                <div class="featured__item">
+                    <div class="featured__item__pic set-bg" data-setbg="font/img/nha-tro-hien-dai.png" style="height: 610px;"></div>
+                </div>
+            </div>
+
+            <div class=" row col-lg-9 col-md-9 col-sm-12 d-flex justify-content-between ">
+
+                <div id="room-container" class="col-lg-4 col-md-4 col-sm-6 mix " th:each="product : ${productlist}" th:classappend="${product.type}">
+                    <div class="featured__item">
+                        <div class="featured__item__pic" th:if="${product.video != null}">
+                            <video controls>
+                                <source th:src="@{'font/images/' + ${product.video}}" type="video/mp4">
+
+                            </video>
+                        </div>
+                        <div class="featured__item__pic set-bg" th:if="${product.video == null}" th:attr="data-setbg=@{'font/images/' + ${product.imageUrlList[0]}}">
+
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a th:href="@{/detailroom(RoomID=${product.id})}" th:text="${product.nameproduct}"></a></h6>
+                            <h5 th:text="${product.price}+ ' VND'"></h5>
+                        </div>
+                    </div>
+                </div>
+
+                <!--             Phân trang -->
+                <div class="pagination">
+                    <ul>
+                        <!-- Hiển thị nút trang trước (<<) nếu trang hiện tại > 1 -->
+                        <li th:if="${currentPage > 1}"><a th:href="@{'?pageno=' + ${currentPage - 1}}"> << </a></li>
+                        <!-- Hiển thị dấu "..." nếu có trang trước currentPage - 2 -->
+                        <li th:if="${currentPage - 2 > 1}">
+                            <span>...</span>
+                        </li>
+                        <!-- Hiển thị các số trang, và thay thế bằng dấu "..." nếu số lượng trang nhiều -->
+                        <li th:each="i : ${#numbers.sequence(1, totalPage)}" th:if="${i <= currentPage + 2 && i >= currentPage - 2}">
+                            <a th:href="@{'?pageno=' + ${i}}" th:text="${i}" th:classappend="${currentPage == i ? 'active' : ''}"></a>
+                        </li>
+                        <!-- Hiển thị dấu "..." nếu có trang sau currentPage + 2 -->
+                        <li th:if="${currentPage + 2 < totalPage}">
+                            <span>...</span>
+                        </li>
+                        <!-- Hiển thị nút trang tiếp theo (>>) nếu trang hiện tại < totalPage -->
+                        <li th:if="${currentPage < totalPage}"><a th:href="@{'?pageno=' + ${currentPage + 1}}"> >> </a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+
+
+<section id="events" class="events">
+    <div class="container mb-3" data-aos="fade-up">
+        <div class="section-header">
+            <p>ƯU ĐÃI HẤP DẪN CHO NGƯỜI THUÊ</p>
+        </div>
+        <div class="swiper-container slides-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="swiper-wrapper">
+                <!-- Lặp danh sách giảm giá -->
+                <div class="swiper-slide event-item" th:each="discount : ${listdiscount}">
+                    <a href="product-details.html"
+                       class="d-flex flex-column justify-content-end"
+                       th:style="|background-image: url('@{${discount.product.video != null} ? '/font/images/' + ${discount.product.video} : '/font/images/' + ${discount.product.imageUrlList[0]}}')|">
+                        <div class="price align-self-start" th:text="${discount.discountname}"></div>
+                        <p class="description" th:text="${discount.product.nameproduct}"></p>
+                        <div class="discount" th:text="${discount.discount} + ' %'"></div>
+                    </a>
+                </div>
+                <!-- End Lặp -->
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+
+
+
+<div th:replace="/user/frag/footeruser :: footeruser"></div>
+</body>
+</html>

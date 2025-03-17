@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="/user/frag/headuser :: headuser"></head>
+
+<body>
+<div th:replace="/user/frag/headeruser :: headeruser"></div>
+<div th:replace="/user/frag/navbar :: navbar"></div>
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="font/img/breadcrumb.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Vegetable’s Package</h2>
+                    <div class="breadcrumb__option">
+                        <a href="./index.html">Home</a>
+                        <a href="./index.html">Vegetables</a>
+                        <span>Vegetable’s Package</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Product Details Section Begin -->
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="row col-lg-8 col-md-8 mb-3">
+                <div id="room-container" class="col-lg-4 col-md-4 col-sm-6 mix " th:each="product : ${listown}">
+                    <div class="featured__item">
+                        <div class="featured__item__pic" th:if="${product.video != null}">
+                            <video controls>
+                                <source th:src="@{'font/images/' + ${product.video}}" type="video/mp4">
+
+                            </video>
+                        </div>
+                        <div class="featured__item__pic set-bg" th:if="${product.video == null}" th:attr="data-setbg=@{'font/images/' + ${product.imageUrlList[0]}}">
+
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a th:href="@{/detailroom(RoomID=${product.id})}" th:text="${product.nameproduct}"></a></h6>
+                            <h5 th:text="${product.price}+ ' VND'"></h5>
+<!--                            &lt;!&ndash; Nút ba chấm &ndash;&gt;-->
+<!--                            <div class="dropdown">-->
+<!--                                <button class="dropdown-toggle" onclick="toggleDropdown(this)">⋮</button>-->
+<!--                                <div class="dropdown-menu">-->
+<!--                                    <a>Sửa</a>-->
+<!--                                    <form action="/authordeleteroom/{id}" method="POST"-->
+<!--                                          th:action="@{/authordeleteroom/{id}(id=${product.id})}"-->
+<!--                                          onsubmit="return confirm('Bạn có chắc chắn muốn xóa phòng trọ này không?');">-->
+<!--                                        <button type="submit">-->
+<!--                                             Xóa-->
+<!--                                        </button>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                </div>
+                <div id="blog-container" class="col-lg-4 col-md-4 col-sm-6 mix " th:each="blog : ${listblog}">
+                    <div class="featured__item">
+                        <div class="featured__item__pic set-bg">
+                            <img th:src="@{'font/images/' + ${blog.blog_img}}" alt="">
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a th:text="${blog.blog_name}"></a></h6>
+                        </div>
+                    </div>
+                </div>
+                <div id="review-container" class="col-lg-4 col-md-4 col-sm-6 mix " th:each="review : ${listreview}">
+                    <div class="featured__item">
+                        <div class="featured__item__pic set-bg">
+                            <img th:src="@{'font/images/' + ${review.review_img}}" alt="">
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a th:text="${review.review_name}"></a></h6>
+                        </div>
+                    </div>
+                </div>
+                <div id="partner-container" class="col-lg-4 col-md-4 col-sm-6 mix " th:each="partner : ${listpartner}">
+                    <div class="featured__item">
+                        <div class="featured__item__pic set-bg">
+                            <img th:src="@{'font/images/' + ${partner.partner_img}}" alt="">
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a th:text="${partner.partner_name}"></a></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <div class="user_host">
+                    <div class="user_host_avarta">
+                        <i class="fa-regular fa-user"></i>
+                    </div>
+                    <h5 th:text="${user.username}"></h5>
+                </div>
+                <div class="user_contact_phone">
+                    <i class="bi bi-telephone-inbound"></i>
+                    <p th:text="${user.phone}"></p>
+                </div>
+                <div class="user_contact_message">
+                    <i class="bi bi-send"></i>
+                    <p>nhắn tin</p>
+                </div>
+                <div class="user_contact_zalo">
+                    <img src="font/img/zalo.jpg" alt="">
+                    <p th:text="${user.zalo}"></p>
+                </div>
+                <!--<div class="user_contact_imgmap">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.6210463148677!2d108.22189561481555!3d16.0729394888557!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31421839857e4bc7%3A0x8a1fe3236c110e2a!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBCw6FjaCBLaG9hIC0gxJDhuqFpIGjhu41jIHRw4bqhaSBIw6AgTuG7m2k!5e0!3m2!1svi!2s!4v1624226400717!5m2!1svi!2s" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>-->
+            </div>
+
+
+        </div>
+    </div>
+</section>
+<!-- Product Details Section End -->
+
+
+
+<div th:replace="/user/frag/footeruser :: footeruser"></div>
+</body>
+</html>

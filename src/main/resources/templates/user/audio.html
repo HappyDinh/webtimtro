@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="/user/frag/headuser :: headuser"></head>
+
+<body>
+<div th:replace="/user/frag/headeruser :: headeruser"></div>
+<div th:replace="/user/frag/navbar :: navbar"></div>
+
+<!-- Hero Section Begin -->
+
+
+<!-- Product Details Section Begin -->
+<section id="audio" class="audio-details spad">
+    <div class="container">
+        <div class="row align-items-center mb-3">
+            <div class="col-lg-3">
+                <div class="audio__sidebar__item">
+                    <h4>Mới nhất</h4>
+                    <div class="audio__sidebar__recent" th:each="product, iterStat : ${recentProducts}">
+                        <a th:href="@{/detailroom(RoomID=${product.id})}" class="audio__sidebar__recent__item">
+                            <div class="audio__sidebar__recent__item__pic" th:if="${product.video != null}">
+                                <video controls>
+                                    <source th:src="@{'font/img/' + ${product.video}}" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="audio__sidebar__recent__item__pic" th:if="${product.video == null}">
+                                <img th:src="@{'font/images/' + ${product.imageUrlList[0]}}" alt="">
+                            </div>
+                            <div class="audio__sidebar__recent__item__text">
+                                <h6 th:text="${product.nameproduct}"></h6>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="filter-box mt-3">
+                    <div class="filter-title">Xem theo khoảng giá</div>
+                    <div class="filter-list-container">
+                        <ul class="filter-list">
+                            <li><a href="/filter_price?minPrice=0&maxPrice=1">› Dưới 1 triệu</a></li>
+                            <li><a href="/filter_price?minPrice=2&maxPrice=3">› Từ 2 - 3 triệu</a></li>
+                            <li><a href="/filter_price?minPrice=5&maxPrice=7">› Từ 5 - 7 triệu</a></li>
+                            <li><a href="/filter_price?minPrice=10&maxPrice=15">› Từ 10 - 15 triệu</a></li>
+                        </ul>
+                        <ul class="filter-list">
+                            <li><a href="/filter_price?minPrice=1&maxPrice=2">› Từ 1 - 2 triệu</a></li>
+                            <li><a href="/filter_price?minPrice=3&maxPrice=5">› Từ 3 - 5 triệu</a></li>
+                            <li><a href="/filter_price?minPrice=7&maxPrice=10">› Từ 7 - 10 triệu</a></li>
+                            <li><a href="/filter_price?minPrice=15&maxPrice=1000">› Trên 15 triệu</a></li>
+                        </ul>
+                    </div>
+                    <div class="filter-title" style="margin-top: 20px;">Xem theo diện tích</div>
+                    <div class="filter-list-container">
+                        <ul class="filter-list">
+                            <li><a href="/filter_acreage?minAcreage=0&maxAcreage=20">› Dưới 20 m²</a></li>
+                            <li><a href="/filter_acreage?minAcreage=25&maxAcreage=30">› Từ 25 - 30m²</a></li>
+                        </ul>
+                        <ul class="filter-list">
+                            <li><a href="/filter_acreage?minAcreage=20&maxAcreage=25">› Từ 20 - 25m²</a></li>
+                            <li><a href="/filter_acreage?minAcreage=30&maxAcreage=900">› Trên 30m²</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="audio-item mb-3" th:each="room : ${audiolist}">
+                    <div class="col-lg-3 video-container" th:if="${room.video != null}">
+                        <video th:src="@{'font/images/' + ${room.video}}" controls class="img-fluid" type="video/mp4"></video>
+                    </div>
+                    <div class="audio-content">
+<!--                        <h3 th:text="${room.nameproduct}"></h3>-->
+                        <h6><a th:href="@{/detailroom(RoomID=${room.id})}" th:text="${room.nameproduct}"></a></h6>
+                        <p th:text="${room.description}"></p>
+                        <p th:text="'Địa chỉ: ' + ${room.address_product}"></p>
+<!--                        <p th:text="'Khoảng cách: ' + ${room.distance} + ' ' + 'Diện tích: ' + ${room.acreage}"></p>-->
+                        <div class="room-info">
+                            <p th:text="'Khoảng cách: ' + ${room.distance} + 'km'"></p>
+                            <p th:text="'Diện tích: ' + ${room.acreage} + 'm²'"></p>
+                        </div>
+                        <h5 th:text="${room.price} + 'Tr / Tháng'"></h5>
+                        <div class="user-info-user-partner mt-3">
+                            <div class="user-info-partner d-flex align-items-center mb-3">
+                                <i class="fa-regular fa-user"></i>
+                            </div>
+                            <p class="ml-2" th:text="${room.user.username}"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!--             Phân trang -->
+                <div class="pagination">
+                    <ul>
+                        <!-- Hiển thị nút trang trước (<<) nếu trang hiện tại > 1 -->
+                        <li th:if="${audiocurrentPage > 1}"><a th:href="@{'?pageno=' + ${audiocurrentPage - 1}}"> << </a></li>
+                        <!-- Hiển thị dấu "..." nếu có trang trước currentPage - 2 -->
+                        <li th:if="${audiocurrentPage - 2 > 1}">
+                            <span>...</span>
+                        </li>
+                        <!-- Hiển thị các số trang, và thay thế bằng dấu "..." nếu số lượng trang nhiều -->
+                        <li th:each="i : ${#numbers.sequence(1, audiototalPage)}" th:if="${i <= audiocurrentPage + 2 && i >= audiocurrentPage - 2}">
+                            <a th:href="@{'?pageno=' + ${i}}" th:text="${i}" th:classappend="${audiocurrentPage == i ? 'active' : ''}"></a>
+                        </li>
+                        <!-- Hiển thị dấu "..." nếu có trang sau currentPage + 2 -->
+                        <li th:if="${audiocurrentPage + 2 < audiototalPage}">
+                            <span>...</span>
+                        </li>
+                        <!-- Hiển thị nút trang tiếp theo (>>) nếu trang hiện tại < totalPage -->
+                        <li th:if="${audiocurrentPage < audiototalPage}"><a th:href="@{'?pageno=' + ${audiocurrentPage + 1}}"> >> </a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    </div>
+</section>
+<!-- Product Details Section End -->
+
+<div th:replace="/user/frag/footeruser :: footeruser"></div>
+</body>
+</html>

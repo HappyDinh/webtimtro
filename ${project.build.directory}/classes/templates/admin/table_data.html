@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="~{/admin/fragments/headadmin :: head}"></head>
+
+
+<body>
+
+<!-- ======= Header ======= -->
+<div th:replace="~{/admin/fragments/headeradmin :: header}"></div>
+<div th:replace="~{/admin/fragments/sidebaradmin :: sidebar}"></div>
+
+<main id="main" class="main">
+
+    <div class="pagetitle">
+        <h1>Data Room</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">Tables</li>
+                <li class="breadcrumb-item active">Data</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Datatables</h5>
+                        <!-- Table with stripped rows -->
+                        <table class="table datatable">
+                            <thead>
+                            <tr>
+                                <th scope="col">Room ID</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Khoảng cách</th>
+                                <th scope="col">Giá</th>
+                                <th scope="col">Diện tích</th>
+                                <th scope="col">Thể loại</th>
+                                <th scope="col">Điều hòa</th>
+                                <th scope="col">Nóng lạnh</th>
+                                <th scope="col">Wifi</th>
+                                <th scope="col">Chung chủ</th>
+                                <th scope="col">VSKK</th>
+                                <th scope="col">Thú cưng</th>
+                                <th scope="col">Xóa</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="product : ${products}">
+                                <td th:text="${product.id}"></td>
+                                <td class="limited-lines" th:text="${product.nameproduct}"></td>
+                                <td th:text="${product.distance}"></td>
+                                <td th:text="${product.price}"></td>
+                                <td th:text="${product.acreage}"></td>
+                                <td th:text="${product.type}"></td>
+                                <td th:text="${product.airconditioner}"></td>
+                                <td th:text="${product.hotcold}"></td>
+                                <td th:text="${product.wifi}"></td>
+                                <td th:text="${product.commonowner}"></td>
+                                <td th:text="${product.closed}"></td>
+                                <td th:text="${product.pets}"></td>
+                                <td>
+                                    <form action="/deleteroom/{id}" method="POST"
+                                          th:action="@{/deleteroom/{id}(id=${product.id})}"
+                                          onsubmit="return confirm('Bạn có chắc chắn muốn xóa phòng trọ này không?');">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-trash-alt"></i> Xóa
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!-- End Table with stripped rows -->
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main><!-- End #main -->
+<div th:replace="~{/admin/fragments/footeradmin :: footer}"></div>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="zxx">
+<head th:replace="/user/frag/headuser :: headuser"></head>
+
+
+<body>
+<div th:replace="/user/frag/headeruser :: headeruser"></div>
+<div th:replace="/user/frag/navbar :: navbar"></div>
+<!-- partner section begin -->
+<section class="partner-section spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="partner-item mb-3" th:each="partner : ${listpartner}">
+          <div class="partner-content-wrapper d-flex">
+            <div class="col-lg-3 partner-image">
+              <img th:src="@{'font/images/' + ${partner.partner_img}}" alt="partner Image" class="img-fluid">
+            </div>
+            <div class="partner-content ml-3">
+              <h4 th:text="${partner.partner_name}"></h4>
+              <p th:text="${partner.partner_content}"></p>
+              <p th:text="'Địa chỉ: ' + ${partner.partner_address}"></p>
+              <div class="room-info">
+                <p th:text="'Giá: ' + ${partner.partner_price} + ' Tr / Tháng'"></p>
+                <p th:text="'Diện tích: ' + ${partner.partner_acreage} + 'm²'"></p>
+              </div>
+              <div class="user-info-user-partner">
+                <div class="user-info-partner d-flex align-items-center mb-3">
+                  <i class="fa-regular fa-user"></i>
+                </div>
+                <p class="ml-2" th:text="${partner.user.username}"></p>
+              </div>
+            </div>
+          </div>
+          <div class="partner-actions mt-3 d-flex align-items-center">
+            <a href="" class="" ><i class="fa-regular fa-thumbs-up mr-3"></i></a>
+            <a href="" class="" ><i class="fa-regular fa-thumbs-down mr-3"></i></a>
+            <a href="#tabs-2" class="nav-link-review mr-3" data-toggle="tab" role="tab" aria-selected="false">Bình luận</a>
+            <a href="#" class="share-icon-review ml-3"><i class="fa-solid fa-share-from-square"></i></a>
+          </div>
+          <!-- Comment Section Begin -->
+          <div class="tab-pane" id="tabs-2" role="tabpanel">
+            <div class="product__details__tab__desc">
+              <div class="col-12 comment-section">
+                <div class="comment-form">
+                  <div class="user-avatar">
+                    <img src="font/img/zalo.jpg" alt="User Avatar">
+                  </div>
+                  <div class="comment-input">
+                    <textarea placeholder="Write a comment..."></textarea>
+                    <button type="submit" class="post-btn">
+                      <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                  </div>
+                </div>
+                <div class="comments">
+                  <div class="comment">
+                    <div class="user-avatar">
+                      <img src="font/img/zalo.jpg" alt="User Avatar">
+                    </div>
+                    <div class="comment-content">
+                      <h5>Đinh Mừng</h5>
+                      <p>This is a sample comment.</p>
+                      <div class="comment-actions">
+                        <span>Like</span>
+                        <span>Reply</span>
+                        <span>3 hrs</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Add more comments as needed -->
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- Add more comments as needed -->
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="filter-box">
+          <div class="filter-title">Xem theo khoảng giá</div>
+          <div class="filter-list-container">
+            <ul class="filter-list">
+              <li><a href="/filter_price?minPrice=0&maxPrice=1">› Dưới 1 triệu</a></li>
+              <li><a href="/filter_price?minPrice=2&maxPrice=3">› Từ 2 - 3 triệu</a></li>
+              <li><a href="/filter_price?minPrice=5&maxPrice=7">› Từ 5 - 7 triệu</a></li>
+              <li><a href="/filter_price?minPrice=10&maxPrice=15">› Từ 10 - 15 triệu</a></li>
+            </ul>
+            <ul class="filter-list">
+              <li><a href="/filter_price?minPrice=1&maxPrice=2">› Từ 1 - 2 triệu</a></li>
+              <li><a href="/filter_price?minPrice=3&maxPrice=5">› Từ 3 - 5 triệu</a></li>
+              <li><a href="/filter_price?minPrice=7&maxPrice=10">› Từ 7 - 10 triệu</a></li>
+              <li><a href="/filter_price?minPrice=15&maxPrice=1000">› Trên 15 triệu</a></li>
+            </ul>
+          </div>
+          <div class="filter-title" style="margin-top: 20px;">Xem theo diện tích</div>
+          <div class="filter-list-container">
+            <ul class="filter-list">
+              <li><a href="/filter_acreage?minAcreage=0&maxAcreage=20">› Dưới 20 m²</a></li>
+              <li><a href="/filter_acreage?minAcreage=25&maxAcreage=30">› Từ 25 - 30m²</a></li>
+            </ul>
+            <ul class="filter-list">
+              <li><a href="/filter_acreage?minAcreage=20&maxAcreage=25">› Từ 20 - 25m²</a></li>
+              <li><a href="/filter_acreage?minAcreage=30&maxAcreage=900">› Trên 30m²</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="audio__sidebar__item">
+          <h4>Bài viết mới nhất</h4>
+          <div class="audio__sidebar__recent" th:each="blog, iterStat : ${blogs}">
+            <a href="#" class="audio__sidebar__recent__item">
+              <div class="audio__sidebar__recent__item__pic">
+                <img th:src="@{'font/images/' + ${blog.blog_img}}" alt="">
+              </div>
+              <div class="audio__sidebar__recent__item__text">
+                <h6 th:text="${blog.blog_content}"></h6>
+              </div>
+            </a>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- Comment Section End -->
+
+  </div>
+  </div>
+  </div>
+  </div>
+</section>
+<!-- review section end -->
+
+<div th:replace="/user/frag/footeruser :: footeruser"></div>
+</body>
+</html>

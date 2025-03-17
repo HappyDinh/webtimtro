@@ -1,0 +1,195 @@
+/* Custom CSS for the Section: Design Block */
+.rounded-t-5 {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+}
+
+.row.g-0.d-flex.align-items-center {
+    display: flex;
+    flex-wrap: nowrap; /* Đảm bảo các phần tử không bị xuống dòng */
+}
+
+.col-lg-4 {
+    flex: 0 0 auto; /* Giữ chiều rộng của ảnh cố định */
+    max-width: 33.333%; /* Chiếm 1/3 màn hình trên màn hình lớn */
+}
+
+img {
+    width : 500px;
+
+}
+
+.col-lg-8 {
+    flex: 1; /* Phần đăng nhập chiếm phần còn lại */
+    max-width: 66.667%; /* Chiếm 2/3 màn hình trên màn hình lớn */
+}
+
+.card-body {
+    display: flex;
+
+
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    height: 100%; /* Đảm bảo chiều cao bằng với phần ảnh */
+}
+
+.card {
+    margin: 0; /* Loại bỏ khoảng cách mặc định nếu có */
+}
+
+/* Tổng thể form */
+form {
+    width : 500px;
+    height: auto;
+    margin: 0 auto; /* Căn giữa form */
+    padding: 20px; /* Khoảng cách bên trong */
+    background-color: #f9f9f9; /* Màu nền nhẹ nhàng */
+    border: 1px solid #ddd; /* Viền xám nhạt */
+    border-radius: 10px; /* Bo góc form */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng */
+}
+
+/* Trường nhập liệu */
+.form-control {
+    width: 100%; /* Đầy chiều rộng */
+    padding: 10px 15px; /* Khoảng cách bên trong */
+    margin-bottom: 15px; /* Khoảng cách giữa các trường */
+    font-size: 14px; /* Kích thước chữ */
+    border: 1px solid #ccc; /* Viền xám nhạt */
+    border-radius: 5px; /* Bo góc */
+    background-color: #fff; /* Nền trắng */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Hiệu ứng chuyển động */
+}
+
+/* Khi focus vào input */
+.form-control:focus {
+    border-color: #007bff; /* Đổi màu viền khi focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Hiệu ứng ánh sáng */
+    outline: none; /* Loại bỏ viền mặc định */
+}
+
+/* Nhãn */
+.form-label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #555; /* Màu chữ */
+    display: block; /* Hiển thị như block để căn chỉnh */
+}
+
+/* Cấu hình cho container chứa các checkbox */
+.checkbox-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+/* Định dạng cho mỗi checkbox */
+.checkbox-item {
+    display: flex;
+    align-items: center;
+}
+
+/* Checkbox */
+/* Cấu hình cho checkbox đơn lẻ */
+.checkbox-single {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.checkbox-single input {
+    margin-right: 10px;
+}
+
+/* Link forgot password */
+a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Nút bấm */
+.btn-primary {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #007bff; /* Nền xanh */
+    border: none; /* Xóa viền */
+    border-radius: 5px; /* Bo góc */
+    font-size: 16px;
+    color: #fff; /* Chữ trắng */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Hiệu ứng chuyển động */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Màu đậm hơn khi hover */
+}
+
+/* Row for checkbox và link */
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+
+@media (min-width: 992px) {
+    .rounded-tr-lg-0 {
+        border-top-right-radius: 0;
+    }
+
+    .rounded-bl-lg-5 {
+        border-bottom-left-radius: 0.5rem;
+    }
+}
+
+.card {
+    margin-bottom: 1.5rem;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 2rem 1.5rem;
+}
+
+.form-control {
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    padding: 0.5rem 0.75rem;
+}
+
+.form-control:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.form-label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}

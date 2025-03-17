@@ -1,0 +1,155 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Đăng tin</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <link th:href="@{/font/css/addroom.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!-- Section: Design Block -->
+<section class=" text-center text-lg-start">
+
+    <div class="card mb-3">
+        <div class="row g-0 d-flex align-items-center">
+            <!-- Cột chứa ảnh -->
+            <div class="col-lg-4 d-none d-lg-flex">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp" alt="Trendy Pants and Shoes"
+                     class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
+            </div>
+            <!-- Cột chứa form đăng nhập -->
+            <div class="col-lg-8 ml-2">
+                <div class="card-body py-5 px-md-5">
+
+
+                    <form action="/addroom" th:action="@{/addroom}" th:object="${product}"  method="POST" enctype="multipart/form-data">
+                        <div style="text-align: center;">
+                            <h1>Đăng Thông Tin Phòng Trọ</h1>
+                        </div>
+
+                        <!-- Các phần tử trong form -->
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <label class="form-label" for="nameroom">Tên tiêu đề</label>
+                            <input type="text" id="nameroom" th:field="*{nameproduct}" class="form-control" />
+                        </div>
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <label class="form-label" for="addressroom">Địa chỉ</label>
+                            <input type="text" id="addressroom" th:field="*{address_product}" class="form-control" />
+                        </div>
+                        <div class="row">
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <label class="form-label" for="distance">Khoảng cách</label>
+                                <input type="number" id="distance" th:field="*{distance}" class="form-control" required/>
+                            </div>
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <label class="form-label" for="price">Giá</label>
+                                <input type="number" id="price" th:field="*{price}" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <label class="form-label" for="acreage">Diện tích</label>
+                                <input type="number" id="acreage" th:field="*{acreage}" class="form-control" required/>
+                            </div>
+                            <div data-mdb-input-init class="form-outline mb-4">
+                                <i class="fas fa-user-tag fa-lg me-3 fa-fw"></i>
+                                <div class="form-outline flex-fill mb-0">
+                                    <label class="form-label" for="type">Thể loại</label>
+                                    <select id="type"  class="form-control" th:field="*{type}">
+                                        <option value="CCMN">Chung cư mini</option>
+                                        <option value="CC">Chung cư</option>
+                                        <option value="Tro">Nhà trọ</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkbox-container">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="vskk" th:field="*{Closed}"/>
+                                <label for="vskk">Khép kín</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="airconditioner" th:field="*{airconditioner}"/>
+                                <label for="airconditioner">Điều hòa</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="hotcold" th:field="*{hotcold}"/>
+                                <label for="hotcold">Nóng lạnh</label>
+                            </div>
+                        </div>
+                        <div class="checkbox-container">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="wifi" th:field="*{wifi}"/>
+                                <label for="wifi">Wifi</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="pets" th:field="*{pets}"/>
+                                <label for="pets">Thú cưng</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="commonowner" th:field="*{commonowner}"/>
+                                <label for="commonowner">Chung chủ</label>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <i class="fas fa-image fa-lg me-3 fa-fw"></i>
+                            <label class="form-label">Chọn loại nội dung</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="imageOption" value="image" checked>
+                                <label class="form-check-label" for="imageOption">Đăng ảnh</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="videoOption" value="video">
+                                <label class="form-check-label" for="videoOption">Đăng video</label>
+                            </div>
+                        </div>
+
+                        <div id="imageUpload" class="form-outline mb-4">
+                            <label class="form-label" for="listimage">Ảnh phòng</label>
+                            <input type="file" id="listimage" class="form-control" accept="image/*" name="images" multiple/>
+                        </div>
+
+                        <div id="videoUpload" class="form-outline mb-4" style="display: none;">
+                            <label class="form-label" for="listvideo">Video phòng</label>
+                            <input type="file" id="listvideo" class="form-control" accept="video/*" name="videoFile"/>
+                        </div>
+                        <div data-mdb-input-init class="form-outline mb-4">
+                            <label class="form-label" for="Description">Mô tả</label>
+                            <input type="text" id="Description" th:field="*{description}" class="form-control" required/>
+                        </div>
+
+                        <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4">
+                            Đăng tin
+                        </button>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- Section: Design Block -->
+</body>
+
+<script>
+    document.querySelectorAll('input[name="fileType"]').forEach((elem) => {
+        elem.addEventListener("change", function() {
+            if (this.value === "image") {
+                document.getElementById("imageUpload").style.display = "block";
+                document.getElementById("videoUpload").style.display = "none";
+            } else {
+                document.getElementById("imageUpload").style.display = "none";
+                document.getElementById("videoUpload").style.display = "block";
+            }
+        });
+    });
+</script>
+
+
+</html>
+

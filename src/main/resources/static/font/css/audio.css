@@ -1,0 +1,194 @@
+/* Định dạng chung cho section */
+#audio {
+    padding: 60px 0;
+    background-color: #f9f9f9;
+}
+
+/* Ensure row does not have fixed height */
+.audio-details .row {
+    align-items: flex-start;
+}
+
+/* Align content of col-lg-3 to the top */
+.audio-details .col-lg-3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: flex-start; /* Ensure the column itself aligns to the top */
+    padding-top: 0; /* Ensure no extra padding at the top */
+}
+
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.audio__sidebar__item {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.audio__sidebar__item h4 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.audio__sidebar__recent {
+    display: flex;
+    flex-direction: column;
+}
+
+.audio__sidebar__recent__item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.audio__sidebar__recent__item__pic img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.audio__sidebar__recent__item__pic video {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.audio__sidebar__recent__item__text {
+    flex: 1;
+}
+
+.audio__sidebar__recent__item__text h6 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;  /* Giới hạn hiển thị 3 dòng */
+    -webkit-box-orient: vertical;
+    overflow: hidden;  /* Ẩn văn bản vượt quá */
+    text-overflow: ellipsis;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.audio__sidebar__recent__item__text span {
+    font-size: 14px;
+    color: #888888;
+}
+
+.col-lg-3 {
+    padding-right: 15px;
+}
+
+.col-lg-9 {
+    padding-left: 15px;
+}
+
+.audio-item {
+    display: flex;
+    gap: 15px; /* Giữ khoảng cách giữa video và nội dung */
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    margin-bottom: 30px;
+    height: 250px; /* Điều chỉnh chiều cao tối đa theo nhu cầu */
+    flex: 1; /* Cho phép phần tử thu nhỏ đồng đều */
+    box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước tổng thể */
+    position: relative; /
+}
+
+.video-container {
+	flex: 3;
+    width: 100%; /* Đảm bảo video-container chiếm toàn bộ chiều rộng của cha */
+    height: 200px; /* Đặt chiều cao cố định cho video */
+    overflow: hidden; /* Ẩn phần video vượt quá container */
+    background-color: #000; /* Màu nền đen cho phần container thừa */
+    position: relative; /* Đặt vị trí tương đối cho video bên trong */
+	border-radius: 5px;
+}
+
+.video-container video {
+    position: absolute; /* Đặt video trong container với vị trí tuyệt đối */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Căn giữa video theo cả chiều ngang và dọc */
+    width: 100%; /* Để chiều rộng tự động, giữ tỷ lệ video */
+    height: 100%; /* Đặt chiều cao của video là 300px */
+    object-fit: cover; /* Đảm bảo video bao phủ toàn bộ container */
+    object-position: center; /* Đảm bảo video nằm ở trung tâm container */
+    border-radius: 5px; /* Bo tròn các góc của video */
+}
+
+.video-container img {
+    position: absolute; /* Đặt video trong container với vị trí tuyệt đối */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Căn giữa video theo cả chiều ngang và dọc */
+    width: 100%; /* Để chiều rộng tự động, giữ tỷ lệ video */
+    height: 100%; /* Đặt chiều cao của video là 300px */
+    object-fit: cover; /* Đảm bảo video bao phủ toàn bộ container */
+    object-position: center; /* Đảm bảo video nằm ở trung tâm container */
+    border-radius: 5px; /* Bo tròn các góc của video */
+}
+
+.audio-content {
+    flex: 7; /* Nội dung chiếm 7 phần */
+}
+
+.audio-content h6 a{
+    font-size: 18px;
+    font-weight: 600;
+
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.audio-content h6 a:hover {
+    color: #293857; /* Màu chữ khi hover */
+    text-decoration: underline; /* Gạch chân khi hover */
+}
+
+.audio-content p {
+    font-size: 16px;
+    color: #555555;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+
+.room-info {
+    display: flex;
+    gap: 20px; /* Khoảng cách giữa 2 đoạn text */
+    align-items: center;
+}
+
+
+.mb-3 {
+    margin-bottom: 1rem !important;
+}
+
+

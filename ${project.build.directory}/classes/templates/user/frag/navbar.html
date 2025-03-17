@@ -1,0 +1,136 @@
+<!-- Hero Section Begin -->
+<section class="hero hero-normal" th:fragment="navbar">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="hero__categories">
+                    <div class="hero__categories__all">
+                        <i class="fa fa-bars"></i>
+                        <span>All departments</span>
+                    </div>
+                    <ul>
+                        <li><a href="/filter_add">Tất cả</a></li>
+                        <li><a href="/filter_add?area=Nguyên xá">Nguyên Xá</a></li>
+                        <li><a href="/filter_add?area=Tu Hoàng">Tu Hoàng</a></li>
+                        <li><a href="/filter_add?area=Nhổn">Nhổn</a></li>
+                        <li><a href="/filter_add?area=Cầu Diễn">Cầu Diễn</a></li>
+                        <li><a href="/filter_add?area=Phú Diễn">Phú Diễn</a></li>
+                        <li><a href="/filter_add?area=Tây Tựu">Tây Tựu</a></li>
+                        <li><a href="/filter_add?area=Xuân Phương">Xuân Phương</a></li>
+                        <li><a href="/filter_add?area=Minh Khai">Minh Khai</a></li>
+                        <li><a href="/filter_add?area=Phương Canh">Phương Canh</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="hero__search">
+                    <div class="hero__search__form">
+                        <form action="/search" method="GET">
+                            <input type="text" id="searchInput" name="area" placeholder="What do you need?">
+                            <button onclick="startVoiceSearch()"><i class="bi bi-mic-fill"></i></button>
+                            <div id="toast">Đang ghi âm...</div>
+                            <!--<button><i class="bi bi-camera"></i></button>-->
+                            <button type="button" onclick="triggerImageUpload()"><i class="bi bi-camera"></i></button>
+                            <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="startImageSearch()">
+                            <div id="toast1">Đang ghi âm...</div>
+                        </form>
+                    </div>
+                    <div class="hero__search__phone">
+                        <i class="fa fa-phone"></i>
+                    </div>
+                    <div class="hero_search_total">
+                        <i class="bi bi-controller"></i>
+                    </div>
+                    <div class="hero_search_filter">
+                        <i class="bi bi-sort-up" id="openFilterForm"></i>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="post-button-wrapper text-center">
+                    <button type="submit" class="btn post-btn-btn" id="openPostForm"> <span id="authStatus" th:text="${#authorization.expression('isAuthenticated()')}" hidden></span>
+                        Đăng tin
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-container mt-3" id="postcontainer">
+        <div class="post-header">
+            <th:block th:if="${#authorization.expression('hasAuthority(''AUTHOR'')')}">
+            <a href="/addblog" class="post-link">📝 Viết Blog</a>
+                <a href="/addroom" class="post-link">🏠 Đăng Phòng</a>
+            </th:block>
+            <th:block th:if="${#authorization.expression('hasAuthority(''USER'')')}">
+            <a href="/addpartner" class="post-link">🤝 Viết Partner</a>
+                <a href="/addreview" class="post-link">⭐ Viết Review</a>
+            </th:block>
+        </div>
+        <div class="post-footer">
+            <button class="post-cancel mb-4" id="submitcancel">cancel</button>
+        </div>
+    </div>
+
+    <div id="filterForm" class="filter-form hidden">
+        <h4 class="mb-3 ml-5">Filter Rental Options</h4>
+        <form id="searchForm">
+            <div class="form-row">
+                <label for="area">Khu vực:</label>
+                <input type="text" id="area" name="location"><br>
+
+                <label for="type">Loại trọ:</label>
+                <select id="type" name="type">
+                    <option value="Chungcu">Chung cư</option>
+                    <option value="CCMN">Chung cư mini</option>
+                    <option value="tro">Nhà trọ</option>
+<!--                    <option value="Ho_gia_đinh">Hộ gia đình</option>-->
+                </select><br>
+
+                <label for="Distance">Khoảng cách:</label>
+                <input type="number" id="Distance" name="distance"><br>
+            </div>
+
+            <div class="form-row">
+                <label for="Acreage">Diện tích:</label>
+                <input type="number" id="Acreage" name="area"><br>
+
+                <label for="price">Giá cả:</label>
+                <input type="number" id="price" name="price"><br>
+
+                <label for="pets">Thú cưng:</label>
+                <select id="pets" name="pets">
+                    <option value="allowed">Cho phép</option>
+                    <option value="not_allowed">Không cho phép</option>
+                </select><br>
+            </div>
+
+            <div class="form-row">
+                <label for="closed">VSKK:</label>
+                <input type="checkbox" id="closed" name="vskk"><br>
+
+                <label for="commonowner">Chung Chủ:</label>
+                <input type="checkbox" id="commonowner" name="owner"><br>
+
+                <label for="wifi">Wifi:</label>
+                <input type="checkbox" id="wifi" name="wifi"><br>
+            </div>
+
+            <div class="form-row">
+                <label for="airconditioner">Điều hòa:</label>
+                <input type="checkbox" id="airconditioner" name="air_conditioner"><br>
+
+                <label for="hotcold">Nóng lạnh:</label>
+                <input type="checkbox" id="hotcold" name="hot_water"><br>
+            </div>
+            <div class="filter-buttons">
+                <button type="submit" class="aplly-filter mb-2 mt-2" onclick="applyFilter()">Apply Filter</button>
+                <button type="button" class="aplly-filter mb-2 mt-2" onclick="window.history.back()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</section>
+<!-- Hero Section End -->
+
+

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head th:replace="/user/frag/headuser :: headuser"></head>
+
+
+<body>
+<div th:replace="/user/frag/headeruser :: headeruser"></div>
+<div th:replace="/user/frag/navbar :: navbar"></div>
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="font/img/id_blog.png">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="breadcrumb__text">
+          <h2>Blog</h2>
+          <div class="breadcrumb__option">
+            <a href="./index.html">Home</a>
+            <span>Blog</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Blog Section Begin -->
+<section class="blog spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-5">
+        <div class="blog__sidebar">
+          <div class="blog__sidebar__search">
+            <form action="#">
+              <input type="text" placeholder="Search...">
+              <button type="submit"><span class="icon_search"></span></button>
+            </form>
+          </div>
+          <div class="blog__sidebar__item">
+            <h4>Thể loại</h4>
+            <ul>
+              <li><a href="/filter_type">All</a></li>
+              <li><a href="/filter_type?type=chungcu">Chung cư</a></li>
+              <li><a href="/filter_type?type=tro">Nhà trọ</a></li>
+              <li><a href="/filter_type?type=CCMN">CCMN</a></li>
+
+            </ul>
+          </div>
+          <div class="blog__sidebar__item">
+            <h4>Recent News</h4>
+            <div class="blog__sidebar__recent" th:each="product : ${lastThreeProducts}">
+              <a href="#" class="blog__sidebar__recent__item">
+                <div class="blog__sidebar__recent__item__pic">
+                  <img th:src="@{'font/images/' + ${product.imageUrlList[0]}}" alt="">
+                </div>
+                <div class="blog__sidebar__recent__item__text">
+                  <h6 th:text="${product.nameproduct}"></h6>
+                  <span th:text="${product.price} + 'Tr / Tháng'"></span>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="blog__sidebar__item">
+            <h4>Search By</h4>
+            <div class="blog__sidebar__item__tags">
+              <a href="/filter_acreage?minAcreage=0&maxAcreage=20">Dưới 20 m²</a>
+              <a href="/filter_acreage?minAcreage=20&maxAcreage=25">Từ 20 - 25m²</a>
+              <a href="/filter_acreage?minAcreage=25&maxAcreage=30">Từ 25 - 30m²</a>
+              <a href="/filter_acreage?minAcreage=30&maxAcreage=35">Từ 30 - 35m²</a>
+              <a href="/filter_acreage?minAcreage=35&maxAcreage=40">Từ 35 - 40m²</a>
+              <a href="/filter_acreage?minAcreage=40&maxAcreage=200">Trên 40m²</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-7">
+
+        <div class="blog-item mb-3" th:each="blog : ${listblog}">
+          <div class="blogimg-container">
+            <img th:src="@{'font/images/' + ${blog.blog_img}}" alt="">
+          </div>
+          <div class="blog-content">
+            <h3><a th:href="@{/detail_blog(blogID=${blog.blogId})}" th:text="${blog.blog_name}"></a></h3>
+            <p th:text="${blog.blog_content}"></p>
+          </div>
+        </div>
+
+
+<!--        <div class="col-lg-12">-->
+<!--          <div class="product__pagination blog__pagination">-->
+<!--            <a href="#">1</a>-->
+<!--            <a href="#">2</a>-->
+<!--            <a href="#">3</a>-->
+<!--            <a href="#"><i class="fa fa-long-arrow-right"></i></a>-->
+<!--          </div>-->
+<!--        </div>-->
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Blog Section End -->
+
+<div th:replace="/user/frag/footeruser :: footeruser"></div>
+</body>
+</html>

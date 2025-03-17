@@ -1,0 +1,281 @@
+/* Partner Section Styles */
+
+.partner-item {
+    background-color: #fff; /* Màu nền trắng cho item */
+    padding: 20px; /* Khoảng cách bên trong */
+    border-radius: 8px; /* Bo góc mềm mại */
+    box-shadow: 3px 4px 18px rgba(0, 0, 0, 0.2); /* Đổ bóng nhẹ */
+  
+}
+
+.partner-content-wrapper {
+    display: flex;
+    align-items: center;
+	/*padding-bottom: 10px;*/
+	align-items: flex-start;
+	position: relative; 
+}
+
+.partner-image {
+    width: 100%;
+    height: 200px; /* Đảm bảo khung ảnh vuông */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /*border-radius: 10px; !* Bo góc nhẹ *!*/
+    padding: 0;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng nhẹ */
+}
+
+.partner-image img {
+    border-radius: 3px; /* Bo góc ảnh */
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Giữ tỉ lệ ảnh mà vẫn lấp đầy khung */
+}
+
+.partner-content {
+    flex-grow: 1;
+	justify-content: space-between; 
+	height: auto;
+	display: flex;
+    flex-direction: column; /* Đặt theo chiều dọc */
+}
+
+
+
+.partner-content p {
+    font-size: 16px; /* Kích thước chữ */
+    font-weight: 500; /* Độ dày chữ vừa */
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+	
+}
+
+.user-info-user-partner {
+	position: absolute;
+    display: flex;
+    align-items: center;
+	bottom: 0; /* Đặt ở lề dưới */
+	justify-content: flex-start; 
+}
+
+.user-info-partner i {
+    font-size: 20px;
+    color: #333;
+	border: 2px solid gray;
+	border-radius: 50%;
+	width: 35px;
+	height: 35px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.user-info-partner p {
+    font-size: 16px;
+    margin-left: 10px;
+    color: #555; /* Màu chữ nhạt hơn cho tên người dùng */
+}
+
+.partner-actions a {
+	margin-right: 20px;
+}
+
+.partner-content h4 {
+    font-size: 20px; /* Cỡ chữ lớn hơn để tạo điểm nhấn */
+    font-weight: bold; /* Chữ đậm để dễ nhìn */
+    color: #333; /* Màu chữ tối để dễ đọc */
+    margin-bottom: 8px; /* Khoảng cách phía dưới tiêu đề */
+    text-transform: capitalize; /* Chữ cái đầu tiên viết hoa */
+    transition: color 0.3s ease-in-out; /* Hiệu ứng chuyển màu mượt mà */
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Hiệu ứng đổi màu khi hover vào */
+.partner-content h4:hover {
+    color: #007bff; /* Màu xanh nổi bật khi di chuột vào */
+    text-decoration: underline; /* Gạch chân nhẹ khi hover */
+}
+
+@media (max-width: 768px) {
+    .partner-content-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .partner-image {
+        max-width: 80px; /* Giới hạn kích thước ảnh nhỏ hơn trên màn hình nhỏ */
+    }
+
+    .user-info-user-partner {
+        margin-top: 10px;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+  .partner-content-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .partner-image img {
+    max-width: 120px;
+  }
+
+  .partner-content {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .partner-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+  }
+
+  .partner-actions a {
+    margin-bottom: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .partner-image img {
+    max-width: 80px;
+  }
+
+  .partner-content p,
+  .user-info-user-partner p {
+    font-size: 14px;
+  }
+
+  .partner-actions a {
+    font-size: 16px;
+  }
+}
+
+.hidden {
+    display: none;
+}
+
+
+.filter-form {
+    position: absolute;
+    top: 100px; /* adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 10;
+}
+
+.form-row {
+	display: flex;
+	align-items: center; /* Căn giữa theo chiều dọc */
+	margin-bottom: 10px; /* Khoảng cách giữa các hàng */
+	justify-content: center;
+}
+
+.filter-form form {
+    display: flex; /* Sử dụng flexbox cho layout */
+    flex-direction: column; /* Sắp xếp các phần tử theo cột */
+}
+
+.filter-form .form-group {
+    display: flex; /* Sử dụng flexbox cho mỗi cặp label và input */
+    align-items: center; /* Căn giữa các item theo chiều dọc */
+    margin-bottom: 10px; /* Khoảng cách giữa các nhóm */
+}
+
+.filter-form label {
+    width: 150px; /* Đặt chiều rộng cho label */
+    margin-right: 10px; /* Khoảng cách giữa label và input */
+    text-align: right; /* Canh giữa cho label */
+}
+
+.filter-form input,
+.filter-form select {
+    
+    padding: 5px; /* Padding cho input và select */
+}
+
+.filter-form input[type="checkbox"] {
+    width: auto; /* Đặt chiều rộng cho checkbox */
+    margin-left: 25px; /* Đẩy checkbox ra bên phải một chút */
+    margin-right: 65px;
+}
+
+.aplly-filter {
+	background: #3c97f8;
+	width: 200px;
+	height: 40px;
+	border-radius: 5px;
+	margin: 10px auto; 
+}
+
+
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column; /* Chuyển các phần tử thành hàng dọc khi màn hình nhỏ */
+    }
+
+    label, input, select {
+        width: 100%; /* Cả label và input/select sẽ chiếm 100% chiều rộng */
+        margin-right: 0; /* Bỏ margin của label khi xuống hàng dọc */
+    }
+
+    input, select {
+        margin-bottom: 10px; /* Tạo khoảng cách dưới input và select */
+    }
+
+    button {
+        width: 100%; /* Nút chiếm toàn bộ chiều rộng */
+        padding: 12px; /* Thêm khoảng đệm để dễ bấm hơn trên thiết bị di động */
+    }
+}
+
+.filter-box {
+    width: auto;
+    background: #f1efed17;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.filter-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.filter-list-container {
+    display: flex;
+    justify-content: space-between;
+}
+.filter-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 48%; /* Chia đôi chiều rộng */
+}
+.filter-list li {
+    margin-bottom: 5px;
+}
+.filter-list a {
+    text-decoration: none;
+    color: #0c0b0bf7;
+    font-size: 14px;
+}
+.filter-list a:hover {
+    text-decoration: underline;
+}
